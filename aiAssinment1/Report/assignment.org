@@ -11,7 +11,7 @@
 #+TITLE: [5\baselineskip]
 #+AUTHOR: Xiong ChenYu \\
 #+AUTHOR: U1521516C \\
-#+AUTHOR: EEE \\
+#+AUTHOR: EEE
 #+DATE: Sep 19, 2017 \\
 
 #+BEGIN_EXPORT latex

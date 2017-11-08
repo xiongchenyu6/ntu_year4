@@ -1,0 +1,85 @@
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [a4paper]
+#+LaTeX_HEADER: \usepackage{mathptmx}
+#+TITLE: \includegraphics[width=\textwidth]{img/NTU.png} \\
+#+TITLE: [2\baselineskip]
+#+TITLE: REPORT ON \\
+#+TITLE: EE4001 SOFTWARE ENGINEERING PART II \\
+#+TITLE: ASSIGNMENT 2 \\
+#+TITLE: WEB ANALYSES ON TAOBAO \\
+#+TITLE: [3\baselineskip]
+#+LaTeX_CLASS_OPTIONS: [12pt]
+#+LaTeX_CLASS_OPTIONS: [titlepage]
+#+AUTHOR: Group member: \\
+#+AUTHOR: Xu Han(U1520671E) \\
+#+AUTHOR: Xiong ChenYu(U1521516C) \\
+#+AUTHOR: EEE \\
+#+DATE: Oct. 20, 2017 \\
+#+SUBJECT: Haskell heuristic
+#+TOC: listings
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+* Network intensiveness
+  [[fig:taobao][Taobao]] is one of the best Chinese online shopping website Figure 1, which is similar to
+  eBay and Amazon. In Taobao, there are plenty of products you can buy and sell,
+  which contains almost everything in people`s daily life, even a small needle
+  or a big limousine or helicopter. No matter for the buyers or the vendors,
+  TAOBAO can serve the needs of a diverse community of clients.
+
+   #+CAPTION: Taobao
+   #+NAME:   fig:taobao
+   [[./img/t.png]]
+* Unpredictable load
+  For this attributes, Taobao should be a good sample to run stable even for a
+  huge unpredictable load. For example, at the end of 2010, there are over 370
+  million registered members on Taobao, and during some promotion events , there
+  are incredible number of registered members visit Taobao website concurrently within the
+  several minutes at the start of 11th November. But the server is well to hold
+  that unpredictable load every time. Because Taobao have extremely huge
+  amount of server. And Taobao can also make use of the extra computing
+  capability to make money such as Ali-Cloud.
+
+* Performance
+  Taobao has the best server from its parent company - ALIBABA Group. And, they
+  also have the best technical team. So, the performance of Taobao is always
+  well and stable. Taobao used to use PHPAuction framework to build the website
+  because of SQL relay problem for dead lock. But in 2004 taobao make a big
+  change they use java to reconstruct the website.
+
+  By the year 2011 Taobao become the top online shop in the world. Which have
+  the biggest Hadoop big data cluster(2000 nodes, 24000 cores, 48000Gb ram, 40PB
+  data) in the world.
+
+* Data Driven
+  Nowadays, Big Data is land for almost every fields. And, Taobao has the
+  biggest amount of data from its customers: buyers and vendors. They also have
+  one of most professional data analysis team to handle the data. With the
+  analysis result, Taobao provide lots of services to its customers, which are
+  based on the data.
+
+  Taobao also have good recommended system which is highly data driven. They
+  collect many data like history buy v2v(form view to another view and the time
+  interval) to build recommended system.
+
+* Content Sensitive
+  As a online shopping website, there are lots of products are prohibited to
+  sell online. Taobao has a good content sensitive system to avoid this kind of
+  problems, and the system is updated immediately whenever there is a new
+  sensitive product banned by laws and any other regulations.
+
+  When China decide to use real-name system for SIM card. After the new rules
+come into effect, Taobao shop once found to prohibit the sale of goods, in
+addition to the goods off the shelf, but also shop deduction points. If found
+many times, will be directly frozen its shop transactions.
+
+* Continuous Evolution
+
+As the one of most successful online shopping website in the world, Taobao makes
+evolution in every parts of its service, for instance, Taobao website becomes
+more user friendly and easier to use, and Taobao also help vendor to evolution
+their sales planning based on the data.
+
+At first there is only ALIBABA which only do B2B. And it change to Taobao to do
+B2C. And they also create TianMao to sell high quality products.

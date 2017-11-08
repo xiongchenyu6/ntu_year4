@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/xiongchenyu/github/ntu_year4/aiAssiment3/src/main/scala/example/Hello.scala:14:29: not found: value conf[0m
+[0m[[0m[31merror[0m] [0m[0m  val sc = new SparkContext(conf)[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/xiongchenyu/github/ntu_year4/aiAssiment3/src/main/scala/example/Hello.scala:12:3: not found: value SparkConf[0m
+[0m[[0m[31merror[0m] [0m[0m  SparkConf conf = new SparkConf().setAppName("SOME APP NAME").setMaster("local[2]").set("spark.executor.memory","1g");[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

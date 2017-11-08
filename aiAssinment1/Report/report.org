@@ -8,13 +8,14 @@
 #+TITLE: WITH \\
 #+TITLE: ELEOS WEB PTE.LTD \\
 #+TITLE: [3\baselineskip]
+#+LaTeX_CLASS_OPTIONS: [12pt]
 #+AUTHOR: Xiong ChenYu \\
 #+AUTHOR: U1521516C \\
 #+AUTHOR: EEE \\
 #+DATE: May 16, 2017 \\
 #+KEYWORDS: Intership Report
 #+SUBJECT: ELOES WEB
-#+TOC: tables 
+#+TOC: tables
 #+TOC: listings
 
 #+BEGIN_EXPORT latex
@@ -23,7 +24,7 @@
 * Abstract
   This report describes the internship I spent at the ELEOS WEB PTE.LED. The
   ELEOS WEB PTL.LES is a web company provide solution for retailer management.
-  They provide lots of products. 
+  They provide lots of products.
   - Octopus^TM Retail POS :
 
     #+BEGIN_QUOTE
@@ -42,7 +43,7 @@
     and self-service kiosk seamlessly, Octopus™ Food POS provides a modern seamless
     concept and high efficiency for your F&B operations.
     #+END_QUOTE
- 
+
   - E-Commerce :
     #+BEGIN_QUOTE
     Break Geographical Barriers. Reach Out to Your Potential Customers. \\
@@ -151,7 +152,7 @@
 \newpage
 #+END_EXPORT
 
-* Chapter Two  
+* Chapter Two
 ** Team Work
    We use Github as the version control system to do the team work. We do the
    different parts together and merge it to a single files. We use the github
@@ -168,7 +169,6 @@
     #+ATTR_ORG: :width 50
     #+ATTR_LATEX: :width 5cm
    [[./img/mobile.png]]
-
    #+CAPTION: Mobile Functions
    #+NAME:   fig:mobileFunction
     #+ATTR_HTML: width="100px"
@@ -217,7 +217,7 @@
        - [X]  Redeem gift
 
      - [ ] *Advanced Feature*
-       - [ ]  E-wallet(Paypel,Wechat-Pay,ALi-Pay) 
+       - [ ]  E-wallet(Paypel,Wechat-Pay,ALi-Pay)
        - [ ]  E payment deduct voucher value
 
 **** Merchant Side
@@ -231,7 +231,7 @@
 
      - [ ] *Intemeida Feature*
        - [X] Define Member Teir system Based on points
-       - [ ] Define User Groups 
+       - [ ] Define User Groups
        - [ ] Api to combine our system to the exitsting Pos Systme
        - [X] Create Voucher
 
@@ -255,7 +255,7 @@
    I did learn a lot from this internship. Cause it is the first time I am
    in charge of a huge project and explore every things the frameworks extra.
    So I will talk more on this in different respect.
-*** Literate writing 
+*** Literate writing
     When I start to write documentation, I pay a lot of attention to the iterate
     writing. This kind of skills set help me to write documentations, reports,
     and academic papers a lots. Because you can write code when you write things
@@ -264,7 +264,7 @@
     auto-generate. And you can do more. You can find a demo in
     [[fig:mathPlot][Python Plot]]
 
-    #+begin_src python :exports both :results file 
+    #+begin_src python :exports both :results file
        import pylab as pl
        from numpy import sin, pi, linspace
        t = linspace(0, 2*pi, 100)
@@ -302,7 +302,7 @@
     #+ATTR_LATEX: :width 5cm
     #+RESULTS:
     [[file:img/composition.png]]
-    
+
     =Identity=
     f . id_a  = f
     #+BEGIN_SRC plantuml :file img/identity.png
@@ -318,7 +318,7 @@
     #+ATTR_LATEX: :width 5cm
     #+RESULTS:
     [[file:img/identity.png]]
-    
+
     =Associativity=
     h . (g . f) = (h . g) . f
     #+BEGIN_SRC plantuml :file img/Associativity.png
@@ -338,7 +338,7 @@
     #+ATTR_LATEX: :width 5cm
     #+RESULTS:
     [[file:img/Associativity.png]]
-    
+
     =Function= :  A mapping of values to values
 
 **** Monoid                                                            :NOTE:
@@ -408,12 +408,12 @@ have the confidence to do well in the final year project.
 ** My Book List
 **** DONE [[http://learnyouahaskell.com/chapters][Learn Your Haskell A Great Good ]]
      CLOSED: [2017-05-04 Thu 10:33]
-     
+
 **** HOLD Introduction to algorithms                                   :HOLD:
      :PROPERTIES:
      :ID:       7A9942E8-3593-4D9D-ADB9-D7A0E41880F6
      :END:
-     
+
      - State "HOLD"       from "TODO"       [2017-05-04 Thu 13:12] \\
        Stop at black and red tree
 **** WAITING Computer System (A Programmer Perspective)             :WAITING:
@@ -447,4 +447,3 @@ have the confidence to do well in the final year project.
    #+NAME:   fig:dashboard
    #+RESULTS:
    [[file:img/gantt.png]]
-

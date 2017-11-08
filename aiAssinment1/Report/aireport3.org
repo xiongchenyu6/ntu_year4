@@ -1,0 +1,191 @@
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [a4paper]
+#+LaTeX_HEADER: \usepackage{mathptmx}
+#+TITLE: \includegraphics[width=\textwidth]{img/NTU.png} \\
+#+TITLE: [1\baselineskip]
+#+TITLE: Report \\
+#+TITLE: On \\
+#+TITLE: EE4483/IM4483 \\
+#+TITLE: Artificial Intelligence and Data Mining \\
+#+TITLE: Continuous Assessment \\
+#+TITLE: BY FP growth \\
+#+TITLE: [2\baselineskip]
+
+#+LaTeX_CLASS_OPTIONS: [12pt]
+#+LaTeX_CLASS_OPTIONS: [titlepage]
+#+AUTHOR: Xiong ChenYu \\
+#+AUTHOR: U1521516C \\
+#+AUTHOR: EEE \\
+#+DATE: Oct. 20, 2017 \\
+#+SUBJECT: Haskell heuristic
+#+TOC: tables
+#+TOC: listings
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
+* Abstract
+  This report answer questions of the research and study on the continues assessment.
+  The algorithms used to do this project is the FP growth.
+
+  #+CAPTION: System Specification
+  #+NAME: t1
+  | Usage     | Application |
+  |-----------+-------------|
+  | System    | Mac Sierra  |
+  | Algorithm | FP growth   |
+  | Language  | Scala       |
+  | Package   | Spark       |
+
+  #+BEGIN_EXPORT latex
+  \newpage
+  #+END_EXPORT
+
+* Question 1 (How many frequent itemsets have the minimum support of 20%, 10%, 5%, and 3% respectively?)
+
+  #+CAPTION: Frequent itemsets counts
+  #+NAME: t2
+  #+tblname: frequent-data
+  | Minimum support (Unit : %) | Itemsets size counts |
+  |-----------------+------------|
+  | 20              | 20         |
+  | 10              | 68         |
+  | 5               | 268        |
+  | 3               | 659        |
+
+  #+begin_src gnuplot :var data=frequent-data :file img/frequent.png
+
+set title "Minimum support verse Itemsets size count"
+
+set xlabel "Minimum support(%)"
+set xrange [0:20]
+set xtics 0,1,20
+
+
+set ylabel "Itemsets size count"
+set yrange [0:700]
+set ytics 0,50,700
+
+plot data u 1:2 w lp lw 1 title 'Minimum support vs Itemsets size count'
+  #+end_src
+
+  #+RESULTS:
+  [[file:img/frequent.png]]
+
+* Question 2 (What are the respective percentages of frequent 3‐itemsets, and 2‐itemsets, with respect to all possible itemsets, which have a minimum support of 3%?)
+
+  #+CAPTION: 3% minsupport itemsets distribution
+  #+NAME: t2
+  #+tblname: itemsets-data
+  | Itemsets size | Itemsets size count (Total: 659) |
+  |---------------+----------------------------------|
+  |             1 |                               20 |
+  |             2 |                              190 |
+  |             3 |                              424 |
+  |             4 |                               25 |
+  |             5 |                                0 |
+
+  #+begin_src gnuplot :var data=itemsets-data :file img/itemsets.png
+
+set title "Itemsets size verse Itemsets size count (Total: 659)"
+
+set xlabel "Itemsets size"
+set xrange [1:5]
+set xtics 0,1,5
+
+
+set ylabel "Itemsets size count"
+set yrange [0:450]
+set ytics 0,50,450
+
+plot data u 1:2 w lp lw 1 title 'Itemsets size verse Itemsets size count (Total: 659)'
+  #+end_src
+
+  #+CAPTION: respective percentages
+  #+NAME: t2
+  #+tblname: itemsets-data
+  | Itemsets size | Itemsets size count (Total: 659) |
+  |---------------+----------------------------------|
+  |             1 | $\frac{20}{659} = 0.03$          |
+  |             2 | $\frac{190}{659} = 0.288$        |
+  |             3 | $\frac{424}{659} = 0.643$        |
+  |             4 | $\frac{25}{659} = 0.038$         |
+  |             5 | $\frac{0}{659} = 0$              |
+* Question 3 (How many association rules have a minimum confidence of 50% and a minimum support of 5% and 10%, respectively? Briefly explain how the minimum support affects the strong rules generated. )
+
+  #+CAPTION: Rules counts on 50% minimum confidence
+  #+NAME: t3
+  | Minimum Support(Unit: %) | Rules counts |
+  |--------------------------+--------------|
+  |                       10 |            0 |
+  |                        5 |          117 |
+
+* Question 4 (List three association rules that have the highest support with 100% confidence?)
+
+  #+CAPTION: Rules(X itemsets => Y itemsets)
+  #+NAME: t4
+  | X itemsets           | Y itemsets | support |
+  |----------------------+------------+---------|
+  | Salad,Ham,Banana     | Apple      |    0.33 |
+  | IceCream,Olive,Tea   | Banana     |    0.33 |
+  | Ham,Coffee,Diaper    | IceCream   |    0.27 |
+
+* Question 5 (Do you find any “interesting” rules? What are they? Briefly explain why.)
+
+  #+BEGIN_EXPORT latex
+
+  \addcontentsline{toc}{section}{References}
+
+    \begin{thebibliography}{99}
+
+    \bibitem{1}\textsc{En.wikipedia.org}\texttt{ (2017). Data Mining Algorithms In R/Frequent Pattern Mining/The FP-Growth Algorithm - Wikibooks, open books for an open world. [online] Available at: https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Frequent_Pattern_Mining/The_FP-Growth_Algorithm [Accessed 7 Nov. 2017].}
+
+    \bibitem{2}\textsc{En.wikipedia.org}\texttt{ (2017). Data Mining Algorithms In R/Frequent Pattern Mining/The FP-Growth Algorithm - Wikibooks, open books for an open world. [online] Available at: https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Frequent_Pattern_Mining/The_FP-Growth_Algorithm [Accessed 7 Nov. 2017].}
+
+
+  \end{thebibliography}
+
+    #+END_EXPORT
+
+* APPENDIX A
+  #+BEGIN_SRC scala
+    package example
+    import org.apache.spark.{SparkContext, SparkConf}
+    import org.apache.spark.rdd.RDD
+    import org.apache.spark.mllib.fpm.FPGrowth
+
+    object Hello extends Greeting with App {
+
+      println(greeting)
+      val conf = new SparkConf().setAppName("Ex1_SimpleRDD").setMaster("local[4]")
+      val sc = new SparkContext(conf)
+
+      sc.setLogLevel("ERROR")
+
+      val data = sc.textFile("data.csv")
+      val transactions: RDD[Array[String]] = data.map(s => s.trim.split(", "))
+
+      val fpg = new FPGrowth().setMinSupport(0.0276).setNumPartitions(10)
+      val model = fpg.run(transactions)
+
+      model.freqItemsets.collect().foreach { itemset =>
+        println(itemset.items.mkString("[", ",", "]")
+                  + ", "
+                  + itemset.freq) }
+
+      val minConfidence = 1
+      model.generateAssociationRules(minConfidence).collect().foreach { rule =>
+        println(rule.antecedent.mkString("[", ",", "]")
+                  + " => "
+                  + rule.consequent .mkString("[", ",", "]")
+                  + ", "
+                  + rule.confidence) }
+      println(model.generateAssociationRules(minConfidence).collect().size)
+      sc.stop()
+    }
+
+    trait Greeting {
+      lazy val greeting: String = "hello"
+    }
+  #+END_SRC

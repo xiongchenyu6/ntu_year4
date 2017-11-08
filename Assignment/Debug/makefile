@@ -12,7 +12,6 @@ $(GEN_CMDS_QUOTED) \
 "./usbstk5515.obj" \
 "./sar.obj" \
 "./main.obj" \
-"./firc.obj" \
 "./LCD_FCN.obj" \
 "./AIC_func.obj" \
 -l"rts55x.lib" \
@@ -122,8 +121,8 @@ LED_control.out: $(GEN_CMDS) $(CMD_SRCS) $(OBJS)
 # Other Targets
 clean:
 	-$(RM) $(C5500_EXECUTABLE_OUTPUTS__QTD) "LED_control.out"
-	-$(RM) ".\AIC_func.obj" ".\LCD_FCN.obj" ".\firc.obj" ".\main.obj" ".\sar.obj" ".\usbstk5515.obj" 
-	-$(RM) ".\AIC_func.pp" ".\LCD_FCN.pp" ".\firc.pp" ".\main.pp" ".\sar.pp" ".\usbstk5515.pp" 
+	-$(RM) ".\AIC_func.obj" ".\LCD_FCN.obj" ".\main.obj" ".\sar.obj" ".\usbstk5515.obj" 
+	-$(RM) ".\AIC_func.pp" ".\LCD_FCN.pp" ".\main.pp" ".\sar.pp" ".\usbstk5515.pp" 
 	-@echo ' '
 
 .PHONY: all clean dependents

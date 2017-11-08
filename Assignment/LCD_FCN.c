@@ -232,3 +232,5 @@ Int16 printLetter(Uint16 first,Uint16 second,Uint16 third,Uint16 forth)
     
     return 0;
 }
+
+int8 disp[256][4] =  {0}

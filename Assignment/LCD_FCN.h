@@ -10,4 +10,5 @@ Int16 printstring(char *a);
 Int16 clear_lcd();
 Int16 print_ti();
 Int16 printLetter(Uint16 first,Uint16 second,Uint16 third,Uint16 forth);
+void LCD_disp_update(Int16 mode, Int16 b1, Int16 b2, Int16 b3);
 #endif /*LCD_FCN_H_*/

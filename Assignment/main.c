@@ -7,8 +7,10 @@
 #include <AIC_func.h>
 #include <stdio.h>
 #include <Dsplib.h>
-#include <sar.h>
-#include <LCD_FCN.h>
+#include "sar.h"
+#include "led.h"
+#include "LCD_FCN.h"
+#include "lcd_disp.h"
 
 #define TAPS	256
 
@@ -18,19 +20,19 @@ Int16 band_gain_hex[9] = {0x080A, 0x0B5B, 0x100A, 0x16A7, 0x2000, 0x2D34, 0x3FD9
 Int16 band_selection=0;
 
 Int16 BAND1_COEF[TAPS] = {
-	#include "lowBand.dat"
+	#include "band1_coef.dat"
 };
 Int16 band1_gain_selection=4; 
 Int16 band1_coef_changed[TAPS];
 
 Int16 BAND2_COEF[TAPS] = {
-	#include "midBand.dat"
+	#include "band2_coef.dat"
 };
 Int16 band2_gain_selection=4; 
 Int16 band2_coef_changed[TAPS];
 
 Int16 BAND3_COEF[TAPS] = {
-	#include "highBand.dat"
+	#include "band3_coef.dat"
 };
 Int16 band3_gain_selection=4; 
 Int16 band3_coef_changed[TAPS];

@@ -6,6 +6,8 @@
 C_SRCS += \
 ../AIC_func.c \
 ../LCD_FCN.c \
+../lcd_disp.c \
+../led.c \
 ../main.c \
 ../sar.c \
 ../usbstk5515.c 
@@ -16,6 +18,8 @@ CMD_SRCS += \
 OBJS += \
 ./AIC_func.obj \
 ./LCD_FCN.obj \
+./lcd_disp.obj \
+./led.obj \
 ./main.obj \
 ./sar.obj \
 ./usbstk5515.obj 
@@ -23,6 +27,8 @@ OBJS += \
 C_DEPS += \
 ./AIC_func.pp \
 ./LCD_FCN.pp \
+./lcd_disp.pp \
+./led.pp \
 ./main.pp \
 ./sar.pp \
 ./usbstk5515.pp 
@@ -30,6 +36,8 @@ C_DEPS += \
 OBJS__QTD += \
 ".\AIC_func.obj" \
 ".\LCD_FCN.obj" \
+".\lcd_disp.obj" \
+".\led.obj" \
 ".\main.obj" \
 ".\sar.obj" \
 ".\usbstk5515.obj" 
@@ -37,6 +45,8 @@ OBJS__QTD += \
 C_DEPS__QTD += \
 ".\AIC_func.pp" \
 ".\LCD_FCN.pp" \
+".\lcd_disp.pp" \
+".\led.pp" \
 ".\main.pp" \
 ".\sar.pp" \
 ".\usbstk5515.pp" 
@@ -44,6 +54,8 @@ C_DEPS__QTD += \
 C_SRCS_QUOTED += \
 "../AIC_func.c" \
 "../LCD_FCN.c" \
+"../lcd_disp.c" \
+"../led.c" \
 "../main.c" \
 "../sar.c" \
 "../usbstk5515.c" 
@@ -61,6 +73,20 @@ LCD_FCN.obj: ../LCD_FCN.c $(GEN_OPTS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: Compiler'
 	"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c5500/bin/cl55" -v5515 -g --include_path="C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c5500/include" --include_path="C:/EE4413 Course Materials/Part 2 of 2_By Prof Joni Lie/EE4413_C515/C5515_Support_Files/452_Support" --include_path="C:/EE4413/C5515/Exercises/LED_control/Include" --include_path="C:/EE4413 Course Materials/Part 2 of 2_By Prof Joni Lie/EE4413_C515/C5515_Support_Files/C5515_Includes" --diag_warning=225 --ptrdiff_size=32 --memory_model=large --preproc_with_compile --preproc_dependency="LCD_FCN.pp" $(GEN_OPTS_QUOTED) $(subst #,$(wildcard $(subst $(SPACE),\$(SPACE),$<)),"#")
+	@echo 'Finished building: $<'
+	@echo ' '
+
+lcd_disp.obj: ../lcd_disp.c $(GEN_OPTS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: Compiler'
+	"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c5500/bin/cl55" -v5515 -g --include_path="C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c5500/include" --include_path="C:/EE4413 Course Materials/Part 2 of 2_By Prof Joni Lie/EE4413_C515/C5515_Support_Files/452_Support" --include_path="C:/EE4413/C5515/Exercises/LED_control/Include" --include_path="C:/EE4413 Course Materials/Part 2 of 2_By Prof Joni Lie/EE4413_C515/C5515_Support_Files/C5515_Includes" --diag_warning=225 --ptrdiff_size=32 --memory_model=large --preproc_with_compile --preproc_dependency="lcd_disp.pp" $(GEN_OPTS_QUOTED) $(subst #,$(wildcard $(subst $(SPACE),\$(SPACE),$<)),"#")
+	@echo 'Finished building: $<'
+	@echo ' '
+
+led.obj: ../led.c $(GEN_OPTS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: Compiler'
+	"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c5500/bin/cl55" -v5515 -g --include_path="C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c5500/include" --include_path="C:/EE4413 Course Materials/Part 2 of 2_By Prof Joni Lie/EE4413_C515/C5515_Support_Files/452_Support" --include_path="C:/EE4413/C5515/Exercises/LED_control/Include" --include_path="C:/EE4413 Course Materials/Part 2 of 2_By Prof Joni Lie/EE4413_C515/C5515_Support_Files/C5515_Includes" --diag_warning=225 --ptrdiff_size=32 --memory_model=large --preproc_with_compile --preproc_dependency="led.pp" $(GEN_OPTS_QUOTED) $(subst #,$(wildcard $(subst $(SPACE),\$(SPACE),$<)),"#")
 	@echo 'Finished building: $<'
 	@echo ' '
 

@@ -49,6 +49,8 @@ void AIC_init(void)
     AIC3204_rset( 0x0c, 8 );   // LDAC AFIR routed to HPL
     AIC3204_rset( 0x0d, 8 );   // RDAC AFIR routed to HPR
     AIC3204_rset( 0, 0 );      // Select page 0
+    AIC3204_rset( 60, 8 );     // DAC Signal Processing Block Ctrl Register
+    AIC3204_rset( 61, 3 );     // ADC Signal Processing Block Ctrl Register
     AIC3204_rset( 64, 2 );     // Left vol=right vol
     AIC3204_rset( 65, 0);      // Left DAC gain to 0dB VOL; Right tracks Left
     AIC3204_rset( 63, 0xd4 );  // Power up left,right data paths and set channel

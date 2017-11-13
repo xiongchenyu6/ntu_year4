@@ -94,6 +94,19 @@ void AIC_read2(Int16 * right1, Int16 * left1)
     *left1 = data3;
 }
 
+void AIC_aync_read2(Int16 * right1, Int16 * left1)
+{
+	Int16 data3, data4;
+    if((Rcv & I2S0_IR) == 0){
+	data3 = I2S0_W0_MSW_R; 
+    data4 = I2S0_W1_MSW_R; }
+    else{
+    data3 = 0;
+    data4 = 0;
+    }
+    *right1 = data4;
+    *left1 = data3;
+}
 void AIC_write2(Int16 data_right, Int16 data_left)
 {
 	while((Xmit & I2S0_IR) == 0);

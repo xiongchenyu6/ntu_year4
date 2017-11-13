@@ -78,7 +78,6 @@ void Timer_setup()
 
 	*((Uint32*)((reset_loc + TINT)>>1)) = (Uint32)Timer_Handler; //Table points to our handler
 
-
 	IER0 |= (1 << TINT_BIT);//enable interrupt
 	IFR0 &= (1 << TINT_BIT);//clear the flag
 

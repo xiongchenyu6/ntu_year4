@@ -1,7 +1,7 @@
 #include <usbstk5515.h>
 #include <usbstk5515_i2c.h>
 #include <usbstk5515_gpio.h>
-
+#include "font.h"
 #define OSD9616_I2C_ADDR 0x3C
 
 Uint8 TOP [128];
@@ -140,6 +140,24 @@ void printLetter(Uint8 font_array[4]){
   OSD9616_send(0x40,font_array[2]);
   OSD9616_send(0x40,font_array[3]);
   OSD9616_send(0x40,0x00);  // Line blank for space
+}
+
+void printchar(unsigned char a)
+{
+  int x = a;
+  printLetter(tiny_font[x-32]);
+}
+
+void printstring(char *a)
+{
+  Uint16 i, len;
+
+  len = strlen(a);
+  if ((len ==0) | (len>22)) len=16;
+
+  for (i=0; i<len; i++) {
+    printchar(a[i]);
+  }
 }
 
 void set_plane(int i){

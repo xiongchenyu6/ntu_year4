@@ -20,13 +20,11 @@ void LCD_Clear(){
 }
 
 void LCD_disp_init(){
-	Uint16 i;
 	set_plane(0);
 	printstring("       MODE  LBG  MBG  HBG  ");
 }
 
 void LCD_disp_update(Int16 mode, Int16 b1, Int16 b2, Int16 b3){
-	Uint16 i;
 	set_plane(1);
 //	OSD9616_send(0x00,0x2F);
 	if (mode == 0){	

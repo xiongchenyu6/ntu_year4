@@ -3,11 +3,8 @@
 #include <usbstk5515_led.h>
 #include <AIC_func.h>
 #include <stdio.h>
-#include <usbstk5515_spi.h>
-#include <usbstk5515_i2c.h>
 #include <Dsplib.h>
 #include "sar.h"
-#include "led.h"
 #include "LCD_FCN.h"
 #include "lcd_disp.h"
 #define TAPS	256
@@ -18,6 +15,7 @@
 const char *band_gain_db[9] = {"-12dB", "-9dB", "-6dB", "-3dB", "0dB", "3dB", "6dB", "9dB", "12dB"};
 // Compute hex of gain (linear gain is normalized by a factor of 4)
 Int16 band_gain_hex[9] = {0x080A, 0x0B5B, 0x100A, 0x16A7, 0x2000, 0x2D34, 0x3FD9, 0x5A30, 0x7F65};
+Int16 band_gain_led[9] = {9,8,7,6,5,4,3,2,1};
 Int16 band_selection=0;
 
 Int16 BAND1_COEF[TAPS] = {
@@ -46,13 +44,6 @@ Int16 dbuffer_right[TAPS+2] = {0};
 Int16 x_right[1], x_left[1]; //AIC inputs
 Int16 r_right[1], r_left[1]; //AIC outputs
 Uint16 btn_value;
-Uint32 Timer_count = 0;
-Int16  Data_In_Buff[64];
-Int16  Data_Out_Buff[64];
-Uint16 mask = 512;
-Uint32 DBO_index = 0;
-Int16* Data_Out_ptr = Data_Out_Buff;
-Uint32 Out_going = 0;
 void band_mix();
 void check_btn_push(Uint16 value);
 void calculate_new_coef();
@@ -60,13 +51,24 @@ void filter_init();
 void Reset();
 
 interrupt void Timer_Handler()
-{
-	btn_value = Get_Key_Human();
-	if (btn_value != NoKey)
-		check_btn_push(btn_value);
+{	  
+	int timerset0 = TIAFR & 0x0001;
+    int timerset1 = (TIAFR & 0x0002) >> 1;
+    int timerset2 = (TIAFR & 0x0004) >> 2;
+    if(timerset0){
+    	TIAFR = 0x0001;
+    	USBSTK5515_ULED_toggle(1);
+    }
+    if(timerset1){
+    	TIAFR = 0x0002;
+    	USBSTK5515_ULED_toggle(2);
+    }
+    if(timerset2){
+    	TIAFR = 0x0004;
+    	USBSTK5515_ULED_toggle(3);
+    } 
 }
 
-Uint16 time_set;
 Uint32 reset_loc = (Uint32)Reset;
 
 void Timer_setup()
@@ -82,11 +84,21 @@ void Timer_setup()
 	IFR0 &= (1 << TINT_BIT);//clear the flag
 
 	TCR0 = TIME_STOP;
-	TPR0_1  = 199999999; //Set all counters and period regs to the same value
-	TPR0_2 = TCR0_2 = TCR0_2 = 0x0011;
+	TPR0_1 = 0xffff; //Set all counters and period regs to the same value
+	TPR0_2 = 0x0500;
 
+	TCR1 = TIME_STOP;
+	TPR1_1 = 0xffff; //Set all counters and period regs to the same value
+	TPR1_2 = 0x0500;
+	
+	TCR2 = TIME_STOP;
+	TPR2_1 = 0xffff; //Set all counters and period regs to the same value
+	TPR2_2 = 0x0500;
+	
 	TIAFR = 0x0007;//Set the three bits to zero
 	TCR0 |= TIME_START_AUTOLOAD;
+	TCR1 |= TIME_START_AUTOLOAD;
+	TCR2 |= TIME_START_AUTOLOAD;
 }
 
 interrupt void I2S_ISR()
@@ -99,7 +111,8 @@ interrupt void I2S_ISR()
 	} else {
 		AIC_write2(x_right[0],x_left[0]);
 	}
-	TIAFR = 0x0001;
+	IFR0 &= (1 << I2S_BIT_POS);//clear the flag
+
 }
 
 void I2S_Setup()
@@ -109,6 +122,7 @@ void I2S_Setup()
 	IER0 |= (1 << I2S_BIT_POS);//enable interrupt
 	IFR0 &= (1 << I2S_BIT_POS);//clear the flag
 }
+
 void main(void)
 {
 	USBSTK5515_init();
@@ -118,17 +132,19 @@ void main(void)
 	AIC_init();
 	Init_SAR();
 	LCD_init();
-	My_LED_init();
 	LCD_Clear();
 	LCD_disp_init();
 	filter_init();
-	toggle_LED(band_selection);
 	LCD_disp_update(band_selection, band1_gain_selection, band2_gain_selection, band3_gain_selection);
+	USBSTK5515_ULED_on(0);
 	_enable_interrupts();
 	while(1){
-
+	  btn_value = Get_Key_Human();
+	  if (btn_value != NoKey)
+		check_btn_push(btn_value);
 	}
 }
+
 void filter_init(){	
 	int i;
 	for(i=0;i<TAPS;i++){
@@ -140,42 +156,52 @@ void filter_init(){
 }
 
 void check_btn_push(Uint16 value){
-	if (value == SW2){
+	if (value == SW12){
+		band_selection--;
+		if(band_selection == -1){
+		band_selection = 3;
+		}
+	} else if (value == SW1){
+		band_selection++;
+		if(band_selection == 4){
+		band_selection = 0;
+		}
+		if (band_selection == 0){
+	        USBSTK5515_ULED_on(0);
+		}
+		else if (band_selection == 1){
+		    USBSTK5515_ULED_off(0);
+		}
+			
+	}else if(value == SW2) {
+	if (band_selection == 0){
+	        USBSTK5515_ULED_on(0);
+		}
+		else if (band_selection == 3){
+		    USBSTK5515_ULED_off(0);
+			}
 		if (band_selection == 1){
 			band1_gain_selection++;
 			band1_gain_selection = band1_gain_selection % 9;
+			TPR0_2 = band_gain_led[band1_gain_selection] *100;
 			calculate_new_coef();
-			printf("Band 1 gain is %s.\n", band_gain_db[band1_gain_selection]);
 		} else if (band_selection == 2){
 			band2_gain_selection++;
 			band2_gain_selection = band2_gain_selection % 9;
+			TPR1_2 = band_gain_led[band2_gain_selection] *100;
 			calculate_new_coef();
-			printf("Band 2 gain is %s.\n", band_gain_db[band2_gain_selection]);
 		} else if (band_selection == 3){
 			band3_gain_selection++;
 			band3_gain_selection = band3_gain_selection % 9;
+			TPR2_2 = band_gain_led[band3_gain_selection] *100;
 			calculate_new_coef();
-			printf("Band 3 gain is %s.\n", band_gain_db[band3_gain_selection]);
 		}		
 		band_mix();
-	} else if (value == SW1){
-		toggle_LED(band_selection);
-		band_selection++;
-		band_selection = band_selection % 4;
-		toggle_LED(band_selection);
-		if (band_selection == 0)
-			printf("Bypass mode is selected.\n");
-		else if (band_selection == 1)
-			printf("Band %d is selected.\n", band_selection);
-		else if (band_selection == 2)
-			printf("Band %d is selected.\n", band_selection);
-		else if (band_selection == 3)
-			printf("Band %d is selected.\n", band_selection);
 	}
 	
 	LCD_disp_update(band_selection, band1_gain_selection, band2_gain_selection, band3_gain_selection);
 	if (value == SW1 && band_selection == 0){
-		toggle_LED(band_selection);
+		USBSTK5515_ULED_toggle(band_selection);
 	}
 }
 

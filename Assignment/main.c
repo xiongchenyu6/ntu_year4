@@ -1,5 +1,5 @@
 #include <usbstk5515.h>
-#include <usbstk5515_interrupts.h>
+#include "usbstk5515_interrupts.h"
 #include <usbstk5515_led.h>
 #include <AIC_func.h>
 #include <stdio.h>
@@ -125,7 +125,6 @@ void main(void)
 	toggle_LED(band_selection);
 	LCD_disp_update(band_selection, band1_gain_selection, band2_gain_selection, band3_gain_selection);
 	_enable_interrupts();
-
 	while(1){
 
 	}

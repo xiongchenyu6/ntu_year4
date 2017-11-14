@@ -153,7 +153,6 @@ void printstring(char *a)
   Uint16 i, len;
 
   len = strlen(a);
-  if ((len ==0) | (len>22)) len=16;
 
   for (i=0; i<len; i++) {
     printchar(a[i]);

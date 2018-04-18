@@ -1,0 +1,17 @@
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [a4paper]
+#+LaTeX_HEADER: \usepackage{mathptmx}
+#+TITLE: \includegraphics[width=\textwidth]{img/NTU.png} \\
+#+TITLE: [2\baselineskip]
+#+TITLE: HW0288 Engineering Communication II \\
+#+TITLE: ASSIGNMENT 3 \\
+#+TITLE: Email Writing \\
+#+TITLE: [3\baselineskip]
+#+LaTeX_CLASS_OPTIONS: [12pt]
+#+LaTeX_CLASS_OPTIONS: [titlepage]
+#+AUTHOR: Group member: \\
+#+AUTHOR: Eric Ng(U1521211A) \\
+#+AUTHOR: Xiong ChenYu(U1521516C) \\
+#+AUTHOR: EEE \\
+#+DATE: Apr. 18, 2018 \\
+#+OPTIONS: toc:nil

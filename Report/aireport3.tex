@@ -1,5 +1,4 @@
-% Created 2017-11-07 Tue 22:33
-% Intended LaTeX compiler: pdflatex
+% Created 2018-04-13 Fri 10:37
 \documentclass[titlepage]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -44,7 +43,7 @@ BY FP growth \\
 [2\baselineskip]},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 27.0.50 (Org mode 9.1.2)},
+ pdfcreator={Emacs 27.0.50 (Org mode 9.1.9)},
  pdflang={English}}
 \begin{document}
 
@@ -57,12 +56,12 @@ BY FP growth \\
 \newpage
 
 \section{Abstract}
-\label{sec:org1a1622c}
+\label{sec:org2a59890}
 This report answer questions of the research and study on the continues assessment.
 The algorithms used to do this project is the FP growth.
 
 \begin{table}[htbp]
-\caption{\label{tab:org01e1fd0}
+\caption{\label{tab:org748bca0}
 System Specification}
 \centering
 \begin{tabular}{ll}
@@ -78,10 +77,10 @@ Package & Spark\\
 \newpage
 
 \section{Question 1 (How many frequent itemsets have the minimum support of 20\%, 10\%, 5\%, and 3\% respectively?)}
-\label{sec:orge78b22e}
+\label{sec:orgf5e4b31}
 
 \begin{table}[htbp]
-\caption{\label{tab:org1266cfd}
+\caption{\label{tab:org76e6c75}
 Frequent itemsets counts}
 \centering
 \begin{tabular}{rr}
@@ -99,10 +98,10 @@ Minimum support (Unit : \%) & Itemsets size counts\\
 \end{center}
 
 \section{Question 2 (What are the respective percentages of frequent 3‐itemsets, and 2‐itemsets, with respect to all possible itemsets, which have a minimum support of 3\%?)}
-\label{sec:org2848804}
+\label{sec:org757358b}
 
 \begin{table}[htbp]
-\caption{\label{tab:org867b394}
+\caption{\label{tab:org27cd88f}
 3\% minsupport itemsets distribution}
 \centering
 \begin{tabular}{rr}
@@ -121,7 +120,7 @@ Itemsets size & Itemsets size count (Total: 659)\\
 \end{center}
 
 \begin{table}[htbp]
-\caption{\label{tab:org224342a}
+\caption{\label{tab:orgee0727c}
 respective percentages}
 \centering
 \begin{tabular}{rl}
@@ -135,10 +134,10 @@ Itemsets size & Itemsets size count (Total: 659)\\
 \end{tabular}
 \end{table}
 \section{Question 3 (How many association rules have a minimum confidence of 50\% and a minimum support of 5\% and 10\%, respectively? Briefly explain how the minimum support affects the strong rules generated. )}
-\label{sec:org5fe8d9d}
+\label{sec:org3f87eaf}
 
 \begin{table}[htbp]
-\caption{\label{tab:org5961def}
+\caption{\label{tab:org9811961}
 Rules counts on 50\% minimum confidence}
 \centering
 \begin{tabular}{rr}
@@ -150,10 +149,10 @@ Minimum Support(Unit: \%) & Rules counts\\
 \end{table}
 
 \section{Question 4 (List three association rules that have the highest support with 100\% confidence?)}
-\label{sec:org3db3d09}
+\label{sec:org96c0763}
 
 \begin{table}[htbp]
-\caption{\label{tab:org77e45c1}
+\caption{\label{tab:org631ea84}
 Rules(X itemsets => Y itemsets)}
 \centering
 \begin{tabular}{llr}
@@ -166,7 +165,7 @@ Ham,Coffee,Diaper & IceCream & 0.27\\
 \end{table}
 
 \section{Question 5 (Do you find any “interesting” rules? What are they? Briefly explain why.)}
-\label{sec:orga03e7af}
+\label{sec:orgb518588}
 
 
 \addcontentsline{toc}{section}{References}
@@ -181,7 +180,7 @@ Ham,Coffee,Diaper & IceCream & 0.27\\
 \end{thebibliography}
 
 \section{APPENDIX A}
-\label{sec:org7c52b77}
+\label{sec:org7170524}
 \begin{verbatim}
 package example
 import org.apache.spark.{SparkContext, SparkConf}

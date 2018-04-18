@@ -1,0 +1,288 @@
+% Created 2018-04-08 Sun 16:35
+\documentclass[titlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{mathptmx}
+\author{Xiong ChenYu(U1521516C) \\
+EEE \\
+}
+\date{Apr. 8, 2018 \\
+}
+\title{\includegraphics[width=\textwidth]{img/NTU.png} \\
+[2\baselineskip] Assignment ON \\
+EE4478 Digital video processing\\
+Tutorial 2-12 \\
+[3\baselineskip]}
+\hypersetup{
+ pdfauthor={Xiong ChenYu(U1521516C) \\
+EEE \\
+},
+ pdftitle={\includegraphics[width=\textwidth]{img/NTU.png} \\
+[2\baselineskip] Assignment ON \\
+EE4478 Digital video processing\\
+Tutorial 2-12 \\
+[3\baselineskip]},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.0.50 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\listoffigures
+
+\newpage
+
+
+\section{Assignment 2 Halffman Code}
+\label{sec:org054eec2}
+\subsection{Question 1}
+\label{sec:orga5549ec}
+
+   To generate halfman code first is to sort combile the 2 items with lowest possibilites and resort. Until the table only have 2
+items left.
+
+\begin{table}[htbp]
+\caption{1st round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+C & 0.05\\
+A & 0.1\\
+F & 0.12\\
+D & 0.18\\
+B & 0.2\\
+E & 0.35\\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{combile \& 2nd round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+F & 0.12\\
+AC & 0.15\\
+D & 0.18\\
+B & 0.2\\
+E & 0.35\\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\label{tab:org92ccf27}
+combile \& 3rd round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+D & 0.18\\
+B & 0.2\\
+ACF & 0.27\\
+E & 0.35\\
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\caption{\label{tab:orgafb8e53}
+combile \& 4th round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+ACF & 0.27\\
+E & 0.35\\
+BD & 0.38\\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\label{tab:org3cf108b}
+combile \& 5th round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+BD & 0.38\\
+ACFE & 0.62\\
+\end{tabular}
+\end{table}
+
+Then I can use the table above to generate halfman tree, I will use the 0 for the low probalities. And 1 for the high probalities.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5cm]{img/btree1.png}
+\caption{\label{fig:org137f561}
+Tutorial 2.1}
+\end{figure}
+
+After generate the halfman tree, I can generate the halfman code by go through the path
+
+\begin{table}[htbp]
+\caption{Halfman code table}
+\centering
+\begin{tabular}{lr}
+Symbol & Code\\
+\hline
+C & 1010\\
+A & 1011\\
+F & 100\\
+D & 00\\
+B & 01\\
+E & 11\\
+\end{tabular}
+\end{table}
+
+
+\newpage
+
+\subsection{Question 2}
+\label{sec:orgbb3509d}
+
+   To generate halfman code first is to sort combile the 2 items with lowest possibilites and resort. Until the table only have 2
+items left.
+
+\begin{table}[htbp]
+\caption{1st round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+A & 0.04\\
+B & 0.1\\
+C & 0.11\\
+D & 0.15\\
+G & 0.18\\
+E & 0.2\\
+F & 0.22\\
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\caption{combile \& 2nd round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+C & 0.11\\
+AB & 0.14\\
+D & 0.15\\
+G & 0.18\\
+E & 0.2\\
+F & 0.22\\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\label{tab:org61a6704}
+combile \& 3rd round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+D & 0.15\\
+G & 0.18\\
+E & 0.2\\
+F & 0.22\\
+ABC & 0.25\\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\label{tab:org4cf8301}
+combile \& 4th round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+E & 0.2\\
+F & 0.22\\
+ABC & 0.25\\
+DG & 0.33\\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\label{tab:orga24f2cb}
+combile \& 5th round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+ABC & 0.25\\
+DG & 0.33\\
+EF & 0.42\\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\label{tab:orgb60ba90}
+combile \& 6th round of sort}
+\centering
+\begin{tabular}{lr}
+Symbol & Probalility\\
+\hline
+EF & 0.42\\
+ABCDG & 0.58\\
+\end{tabular}
+\end{table}
+
+Then I can use the table above to generate halfman tree, I will use the 0 for the low probalities. And 1 for the high probalities.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5cm]{img/btree2.png}
+\caption{\label{fig:org1209098}
+Tutorial 2.2}
+\end{figure}
+
+After generate the halfman tree, I can generate the halfman code by go through the path
+
+\begin{table}[htbp]
+\caption{Halfman code table}
+\centering
+\begin{tabular}{lr}
+Symbol & Code\\
+\hline
+A & 1010\\
+B & 1011\\
+C & 100\\
+D & 110\\
+G & 111\\
+E & 00\\
+F & 01\\
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section{Assignment 3 Arithmetic Coding}
+\label{sec:org6b386d5}
+
+My matric card is shown below in \hyperref[fig:orgf18fb6a]{fig:3}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5cm]{./img/mat.jpg}
+\caption{\label{fig:orgf18fb6a}
+Matriculation Card}
+\end{figure}
+\end{document}

@@ -1,0 +1,13 @@
+% Make image size divisible by 8
+[X,Y] = size(A);
+if mod(X,8)~=0
+    Height = floor(X/16)*16;
+else
+    Height = X;
+end
+if mod(Y,8)~=0
+    Width = floor(Y/16)*16;
+else
+    Width = Y;
+end
+
